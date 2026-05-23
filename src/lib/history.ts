@@ -56,7 +56,9 @@ export function addHistoryEntry(
   options?: { exportFileName?: string; isSample?: boolean },
 ): HistoryEntry {
   const entry: HistoryEntry = {
-    id: crypto.randomUUID(),
+    id: typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+      ? crypto.randomUUID()
+      : Math.random().toString(36).substring(2) + Date.now().toString(36),
     fileName: parsed.fileName,
     fileSize: parsed.fileSize,
     mimeType: parsed.mimeType,

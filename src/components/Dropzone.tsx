@@ -13,11 +13,11 @@ export function Dropzone({ onFile, disabled }: DropzoneProps) {
       disabled,
       multiple: false,
       accept: {
-        'image/jpeg': ['.jpeg', '.jpg'],
-        'image/png': ['.png'],
-        'image/webp': ['.webp'],
-        'image/gif': ['.gif'],
-        'application/pdf': ['.pdf'],
+        'image/jpeg': ['.jpeg', '.jpg', '.JPEG', '.JPG'],
+        'image/png': ['.png', '.PNG'],
+        'image/webp': ['.webp', '.WEBP'],
+        'image/gif': ['.gif', '.GIF'],
+        'application/pdf': ['.pdf', '.PDF'],
       },
       onDrop: (files) => {
         if (files[0]) onFile(files[0])
