@@ -1,5 +1,6 @@
 import piexif, { type ExifDict } from 'piexifjs'
 import type { EditorState } from '../types/metadata'
+import { cleanStringForPiexif } from './format'
 
 const EXIF_MAP: Record<string, { ifd: string; tag: number }> = {
   artist: { ifd: '0th', tag: piexif.ImageIFD.Artist },
@@ -83,7 +84,7 @@ export async function applyImageChanges(
     if (value.trim() === '') {
       delete ifd[mapping.tag]
     } else {
-      ifd[mapping.tag] = value.trim()
+      ifd[mapping.tag] = cleanStringForPiexif(value.trim())
     }
   }
 

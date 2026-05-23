@@ -50,3 +50,14 @@ export function buildExportName(originalName: string, suffix = 'edited'): string
   const ext = originalName.slice(dot)
   return `${base}-${suffix}${ext}`
 }
+
+export function cleanStringForPiexif(str: string): string {
+  const encoder = new TextEncoder()
+  const bytes = encoder.encode(str)
+  let binary = ''
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i])
+  }
+  return binary
+}
+

@@ -1,5 +1,6 @@
 import { PDFDocument, rgb } from 'pdf-lib'
 import piexif, { type ExifDict } from 'piexifjs'
+import { cleanStringForPiexif } from './format'
 
 function blobToDataUrl(blob: Blob): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -58,14 +59,16 @@ export async function createSampleImage(): Promise<File> {
 
   const exifObj: ExifDict = {
     '0th': {
-      [piexif.ImageIFD.Artist]: 'Sample Resident',
-      [piexif.ImageIFD.Copyright]: '© 2026 Greenview Housing Society',
-      [piexif.ImageIFD.ImageDescription]:
+      [piexif.ImageIFD.Artist]: cleanStringForPiexif('Sample Resident'),
+      [piexif.ImageIFD.Copyright]: cleanStringForPiexif('© 2026 Greenview Housing Society'),
+      [piexif.ImageIFD.ImageDescription]: cleanStringForPiexif(
         'AGM notice board photo (sample metadata)',
+      ),
     },
     Exif: {
-      [piexif.ExifIFD.UserComment]:
+      [piexif.ExifIFD.UserComment]: cleanStringForPiexif(
         'Demo file — includes GPS near Bengaluru for testing',
+      ),
     },
     GPS: {
       [piexif.GPSIFD.GPSLatitudeRef]: 'N',
