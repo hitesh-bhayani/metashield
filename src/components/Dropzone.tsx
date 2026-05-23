@@ -13,7 +13,10 @@ export function Dropzone({ onFile, disabled }: DropzoneProps) {
       disabled,
       multiple: false,
       accept: {
-        'image/*': ['.jpg', '.jpeg', '.png', '.webp', '.gif'],
+        'image/jpeg': ['.jpeg', '.jpg'],
+        'image/png': ['.png'],
+        'image/webp': ['.webp'],
+        'image/gif': ['.gif'],
         'application/pdf': ['.pdf'],
       },
       onDrop: (files) => {
